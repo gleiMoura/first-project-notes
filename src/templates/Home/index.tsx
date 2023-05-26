@@ -1,12 +1,11 @@
-import './App.css';
-//components
-import Posts from './components/posts';
+import './styles.css';
+import Posts from '../../components/Posts';
+import { AppState } from '../../interface';
+import { loadPosts } from '../../utils/load-posts';
 import { Component, ReactNode } from 'react';
-//interfaces
-import { AppState } from './interface';
-//utils
-import { loadPosts } from './utils/load-posts';
-class App extends Component {
+
+
+class Home extends Component {
   state: AppState = {
     counter: 0,
     posts: []
@@ -29,4 +28,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default Home;
