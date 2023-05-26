@@ -1,6 +1,7 @@
 .container {
   min-height: 100vh;
   background-color: #eee;
+  padding: 30px
 }
 
 .posts {

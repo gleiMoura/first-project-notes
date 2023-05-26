@@ -1,7 +1,8 @@
 import './App.css';
 import { Component, ReactNode } from 'react';
 import { PostCard } from './components/Postcard';
-import { AppState, Post, Photo } from './interface';
+import { AppState } from './interface';
+import { loadPosts } from './utils/load-posts';
 
 class App extends Component {
   state: AppState = {
@@ -10,35 +11,17 @@ class App extends Component {
   };
 
   //function of life cycle when component is starting its life
-  componentDidMount(): void {
-    this.loadPosts();
+  async componentDidMount(): Promise<void> {
+    const posts = await loadPosts()
+    this.setState({ posts });
   };
 
-  loadPosts = async () => {
-    const postResponse = fetch('https://jsonplaceholder.typicode.com/posts');
-    const photoResponse = fetch('https://jsonplaceholder.typicode.com/photos');
-
-    const [posts, photos] = await Promise.all([postResponse, photoResponse]);
-
-    const postsJson: Post[] = await posts.json();
-    const photosJson: Photo[] = await photos.json();
-
-    const postsAndPhotos = postsJson.map((post, index) => {
-      return {
-        ...post, cover: photosJson[index].url
-      }
-    });
-
-    this.setState({ posts: postsAndPhotos });
-  }
-
   render(): ReactNode {
-    const { posts, counter } = this.state;
+    const { posts } = this.state;
 
     return (
       <section className='container'>
         <div className='posts'>
-          <p>{counter}</p>
           {posts.map((post, _) => {
             return (
               <PostCard post={post} key={post.id} />
