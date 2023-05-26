@@ -16,5 +16,8 @@ export interface Photo {
 
 export interface AppState {
     posts: Post[],
+    allPosts: Post[],
+    page: number,
+    postsPerPage: number,  
     counter: number
 };

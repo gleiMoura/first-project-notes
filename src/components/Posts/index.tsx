@@ -1,7 +1,8 @@
 import { Post } from "../../interface";
 import { PostCard } from "../Postcard";
+import "./styles.css";
 
-const Posts = ({ posts }:{posts: Post[]}) => {
+const Posts = ({ posts }: { posts: Post[] }) => {
     return (
         <div className='posts'>
             {posts.map((post, _) => {
