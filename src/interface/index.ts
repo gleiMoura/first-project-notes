@@ -15,9 +15,10 @@ export interface Photo {
 };
 
 export interface AppState {
+    searchValue: string,
     posts: Post[],
     allPosts: Post[],
     page: number,
-    postsPerPage: number,  
+    postsPerPage: number,
     counter: number
 };
