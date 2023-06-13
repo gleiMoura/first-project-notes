@@ -4,6 +4,7 @@ import Button from '../../components/Button';
 import { AppState } from '../../interface';
 import { loadPosts } from '../../utils/load-posts';
 import { ChangeEventHandler, Component, ReactNode } from 'react';
+import Search from '../../components/Search';
 class Home extends Component {
   state: AppState = {
     searchValue: "",
@@ -57,15 +58,8 @@ class Home extends Component {
           <h1>Search Value: {searchValue}</h1>
         )}
 
-        <input
-          onChange={this.handleChange}
-          value={searchValue}
-          type="search"
-          style={{
-            padding: "10px",
-            borderRadius: "5px"
-          }}
-        /> <br /><br />
+        <Search handleChange={this.handleChange} searchValue={searchValue} />
+        <br /><br />
 
         {filteredPosts.length > 0 && (
           <Posts posts={filteredPosts} />

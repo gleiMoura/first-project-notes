@@ -15,6 +15,7 @@ const Search = ({ handleChange, searchValue }: SearchProps) => {
                 padding: "10px",
                 borderRadius: "5px"
             }}
+            placeholder="Type your search"
         />
     )
 };
