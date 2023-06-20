@@ -1,4 +1,3 @@
-import { Component, ReactNode } from "react";
 import { MouseEventHandler } from "react";
 import "./styles.css";
 
@@ -8,15 +7,12 @@ interface ButtonProps {
     disabled: boolean
 }
 
-class Button extends Component<ButtonProps> {
-    render(): ReactNode {
-        const { text, onClick, disabled } = this.props;
-        return (
-            <button className="button" onClick={onClick} disabled={disabled}>
-                {text}
-            </button>
-        )
-    }
+const Button = ({ text, onClick, disabled }: ButtonProps) => {
+    return (
+        <button className="button" onClick={onClick} disabled={disabled}>
+            {text}
+        </button>
+    )
 };
 
 export default Button;
