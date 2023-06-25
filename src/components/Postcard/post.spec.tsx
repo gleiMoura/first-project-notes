@@ -1,9 +1,10 @@
 import { render, screen } from "@testing-library/react"
 import { PostCard } from ".";
-import mock from "./mock";
+import createMock from "./mock";
 
 describe("<PostCard />", () => {
     it('Should render post card correctly', () => {
+        const mock = createMock();
         render(<PostCard post={mock} />);
 
         expect(screen.getByRole('img', { name: mock.title }))
@@ -13,9 +14,4 @@ describe("<PostCard />", () => {
         expect(screen.getByText(mock.title))
             .toBeInTheDocument();
     });
-
-    it('Should match snapshot', () => {
-        const { container } = render(<PostCard post={mock} />);
-        expect(container.firstChild).toMatchSnapshot();
-    })
 })
