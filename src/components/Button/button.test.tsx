@@ -32,4 +32,10 @@ describe('<Button />', () => {
         const button = screen.getByRole("button", { name: /load more/i });
         expect(button).toBeEnabled();
     });
+
+    it("It should match snapshot", () => {
+        const { container } = render(<Button text="Load More" onClick={() => { }} disabled={false} />);
+
+        expect(container).toMatchSnapshot();
+    });
 })
