@@ -1,5 +1,4 @@
 import { Photo, Post } from "../interface";
-const fetch = require("node-fetch");
 
 export const loadPosts = async () => {
   const postResponse = fetch('https://jsonplaceholder.typicode.com/posts');

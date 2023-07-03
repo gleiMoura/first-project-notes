@@ -5,6 +5,6 @@ import './global-styles.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Home />
+    <Home postsPerPage={10}/>
   </React.StrictMode>,
 )

@@ -3,25 +3,26 @@ import Posts from '../../components/Posts';
 import Button from '../../components/Button';
 import { Post } from '../../interface';
 import { loadPosts } from '../../utils/load-posts';
-import { ChangeEventHandler, useEffect, useState } from 'react';
+import { ChangeEventHandler, useCallback, useEffect, useState } from 'react';
 import Search from '../../components/Search';
 
-const Home = () => {
+const Home = ({ postsPerPage }: { postsPerPage: number }) => {
   const [searchValue, setSearchValue] = useState<string>("");
   const [posts, setPosts] = useState<Post[]>([]);
   const [allPosts, setAllPosts] = useState<Post[]>([]);
   const [page, setPage] = useState(0);
-  const postsPerPage = 10;
   const noMorePosts = page + postsPerPage >= allPosts.length;
 
-  useEffect(() => {
-    const init = async () => {
-      const postsAndPhotos = await loadPosts()
-      setPosts(postsAndPhotos.slice(0, 10))
-      setAllPosts(postsAndPhotos);
-    };
-    init();
+  const handleLoadPosts = useCallback(async (page: number, postsPerPage: number) => {
+    const postsAndPhotos = await loadPosts();
+
+    setPosts(postsAndPhotos.slice(page, postsPerPage));
+    setAllPosts(postsAndPhotos);
   }, []);
+
+  useEffect(() => {
+    handleLoadPosts(0, postsPerPage);
+  }, [handleLoadPosts, postsPerPage]);
 
   const loadMorePosts: VoidFunction = () => {
     const nextPage = page + postsPerPage;
